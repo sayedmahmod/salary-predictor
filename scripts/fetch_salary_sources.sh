@@ -5,7 +5,7 @@ set -euo pipefail
 
 root="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 raw="$root/data/raw"
-mkdir -p "$raw"/{stackoverflow_2025,aijobs,bls_oews_2024,eurostat_ses,destatis,ba,restricted}
+mkdir -p "$raw"/{stackoverflow_2025,aijobs,bls_oews,eurostat_ses,destatis,ba,restricted}
 mkdir -p "$raw/huggingface"/{eu_tech_jobs,data_professions,tech_job_postings}
 
 get() {
@@ -63,14 +63,34 @@ else
   echo "Skip Zalize CC BY-NC data (set INCLUDE_NONCOMMERCIAL=1 to opt in)."
 fi
 
-# BLS OEWS: national occupation-level workbook for the latest complete annual release.
-# BLS currently returns HTTP 403 to this execution environment.  Preserve that
-# fact in the status file and continue with every other independent source.
-if ! get "https://www.bls.gov/oes/special.requests/oesm24nat.zip" \
-  "$raw/bls_oews_2024/oesm24nat.zip"; then
-  rm -f "$raw/bls_oews_2024/oesm24nat.zip"
-  printf '%s\n' 'BLS OEWS download blocked by BLS HTTP 403; retry from a browser.' \
-    > "$raw/bls_oews_2024/DOWNLOAD_STATUS.txt"
+# BLS OEWS: the complete "all data" workbook of the May release.  The adapter
+# reads data/raw/bls_oews/all_data_M_<year>.xlsx, and that file ships inside
+# oesm<yy>all.zip - so the archive has to be unpacked, not merely stored.  The
+# national-only workbook would not carry the state-level rows the adapter keeps.
+bls_year=2025
+bls_zip="$raw/bls_oews/oesm${bls_year#20}all.zip"
+bls_xlsx="$raw/bls_oews/all_data_M_${bls_year}.xlsx"
+bls_status="$raw/bls_oews/DOWNLOAD_STATUS.txt"
+
+if [ -f "$bls_xlsx" ]; then
+  # An 80 MB download that is already on disk, possibly fetched by hand.
+  printf '%s\n' "BLS OEWS: $(basename "$bls_xlsx") already present, not re-downloading."
+elif get "https://www.bls.gov/oes/special.requests/oesm${bls_year#20}all.zip" "$bls_zip"; then
+  # The workbook sits in a folder inside the archive; -j drops that folder.
+  if unzip -o -q -j "$bls_zip" "*all_data_M_${bls_year}.xlsx" -d "$raw/bls_oews"; then
+    rm -f "$bls_zip" "$bls_status"
+  else
+    printf '%s\n' "BLS OEWS: oesm${bls_year#20}all.zip holds no all_data_M_${bls_year}.xlsx; check the release layout." \
+      > "$bls_status"
+  fi
+else
+  # BLS answers HTTP 403 to some hosting environments.  Record the fact and
+  # carry on with every other independent source.
+  rm -f "$bls_zip"
+  printf '%s\n' \
+    "BLS OEWS download blocked (HTTP 403). Fetch https://www.bls.gov/oes/special.requests/oesm${bls_year#20}all.zip" \
+    "from a browser, unpack it, and place all_data_M_${bls_year}.xlsx in $(dirname "$bls_xlsx")/." \
+    > "$bls_status"
 fi
 
 # Eurostat Structure of Earnings Survey: monthly earnings by sex, age and occupation.

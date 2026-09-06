@@ -2,7 +2,7 @@
 
 ## Already done
 
-- **BLS OEWS 2025:** `data/raw/bls_oews_2024/all_data_M_2025.xlsx` is present
+- **BLS OEWS 2025:** `data/raw/bls_oews/all_data_M_2025.xlsx` is present
   and is processed into `aggregates.parquet`. The historically named folder is
   kept for compatibility.
 - **BA Entgeltstatistik:** annual files for 2020 to 2025 are stored under

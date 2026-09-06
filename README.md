@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/sayedmahmod/salary-predictor/actions/workflows/ci.yml/badge.svg)](https://github.com/sayedmahmod/salary-predictor/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![code style: stdlib](https://img.shields.io/badge/deps-pandas%20%7C%20scikit--learn-orange.svg)](pyproject.toml)
 
 **Turn messy, multi-source salary data into normalised job titles and calibrated
@@ -37,8 +37,9 @@ number, but with a p10-p90 band and an explicit count of the evidence behind it.
 - [Building the dataset locally](#building-the-dataset-locally)
 - [Repository layout](#repository-layout)
 - [Limitations](#limitations)
+- [Intended use](#intended-use)
 - [Development](#development)
-- [Licence](#licence)
+- [Model and data licensing](#model-and-data-licensing)
 
 ---
 
@@ -79,7 +80,7 @@ apart from the real families so they never quietly stand in for one.
 
 ## Installation
 
-Python 3.10 or newer:
+Python 3.11 or newer (scikit-learn is pinned to 1.9.0, which requires it):
 
 ```bash
 python -m venv .venv
@@ -391,6 +392,15 @@ Read this before trusting a number.
 - The model is descriptive and **not causal**. Changing an input does not tell
   you what a raise negotiation would yield.
 
+## Intended use
+
+SalaryKit is not intended for candidate ranking, automated hiring decisions,
+individual compensation decisions or other consequential employment decisions.
+
+It estimates a statistical distribution for a role in a place, from data that is
+skewed towards tech and towards the United States. It says nothing about an
+individual person, and its output is not an offer, a benchmark or advice.
+
 ## Development
 
 ```bash
@@ -401,9 +411,34 @@ python scripts/check_repository.py
 CI runs both on every push and pull request
 ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
 
-## Licence
+## Model and data licensing
 
-The source code is licensed under the [MIT Licence](LICENSE). **This explicitly
-does not extend to third-party data, derived datasets, or trained models** -
-those remain governed by the licences of their sources, listed in
-[DATA_POLICY.md](DATA_POLICY.md).
+The source code is licensed under the [MIT Licence](LICENSE).
+
+The pretrained models, evaluation results and derived figures are **not**
+covered by the MIT License. They are published solely for non-commercial
+research, educational use and portfolio demonstration.
+
+The models incorporate data from sources including the Zalize Tech Job Postings
+Salary Dataset, licensed under CC BY-NC 4.0. No source-level or row-level data
+is distributed in this repository.
+
+Commercial users must retrain the models exclusively from commercially
+compatible sources.
+
+The required source notices below stay in force for every published result
+derived from this pipeline. The full matrix is in
+[DATA_POLICY.md](DATA_POLICY.md); the artefacts themselves carry the same terms
+in [models/README.md](models/README.md).
+
+> - Contains information from the **Stack Overflow Developer Survey 2025**, made
+>   available under the Open Database License (ODbL) 1.0; individual contents
+>   under the Database Contents License (DbCL) 1.0.
+> - Source: **aijobs.net** Global AI, ML and Data Science Salary Index (CC0 1.0).
+> - Source: **Aramente/eu-tech-jobs** (CC BY 4.0); data cleaned and normalised.
+> - **DataForge (data.zalize.com)**, Tech Job Postings Salary Dataset
+>   (CC BY-NC 4.0); data cleaned and normalised.
+> - Source: **Statistik der Bundesagentur für Arbeit**; transformed output.
+> - Source: **U.S. Bureau of Labor Statistics**, Occupational Employment and Wage
+>   Statistics; transformed output.
+> - Source: **Eurostat**, Structure of Earnings Survey; transformed output.

@@ -15,7 +15,7 @@ REPORTS = ROOT / "reports"
 RAW_STACKOVERFLOW = RAW / "stackoverflow_2025"
 RAW_AIJOBS = RAW / "aijobs"
 RAW_HF = RAW / "huggingface"
-RAW_BLS = RAW / "bls_oews_2024"
+RAW_BLS = RAW / "bls_oews"
 RAW_BA = RAW / "ba"
 RAW_EUROSTAT = RAW / "eurostat_ses"
 
