@@ -5,12 +5,14 @@ set -euo pipefail
 
 root="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 raw="$root/data/raw"
-mkdir -p "$raw"/{stackoverflow_2025,aijobs,bls_oews,eurostat_ses,destatis,ba,restricted}
-mkdir -p "$raw/huggingface"/{eu_tech_jobs,data_professions,tech_job_postings}
+mkdir -p "$raw"/{stackoverflow_2025,stackoverflow_history,it_salary_eu,aijobs,bls_oews,eurostat_ses,destatis,ba,restricted}
+mkdir -p "$raw/huggingface"/{eu_tech_jobs,data_professions,tech_job_postings,german_job_postings}
 
 get() {
   local url="$1" output="$2"
-  curl --fail --location --retry 3 --retry-delay 2 --output "$output" "$url"
+  local partial="${output}.part"
+  curl --fail --location --retry 3 --retry-delay 2 --output "$partial" "$url"
+  mv "$partial" "$output"
 }
 
 # Stack Overflow's archive is stored through Git LFS.  media.githubusercontent.com
@@ -21,6 +23,21 @@ get "https://media.githubusercontent.com/media/StackExchange/Survey/main/package
   "$raw/stackoverflow_2025/survey_results_schema.csv"
 get "https://media.githubusercontent.com/media/StackExchange/Survey/main/packages/archive/2025/survey.pdf" \
   "$raw/stackoverflow_2025/survey.pdf"
+
+# Historische deutsche Trainingsbasis. Der Adapter filtert auf Germany; die
+# Originaldateien bleiben vollstaendig und erlauben reproduzierbare Audits.
+for so_year in 2018 2019 2020 2021 2022 2023 2024; do
+  get "https://media.githubusercontent.com/media/StackExchange/Survey/main/packages/archive/${so_year}/results.csv" \
+    "$raw/stackoverflow_history/${so_year}.csv"
+done
+
+# CC0-Umfrage mit Schwerpunkt Deutschland. Kaggle verlangt fuer den Download
+# einen GET (HEAD antwortet fuer diesen alten Datensatz irrefuehrend mit 404).
+it_salary_zip="$raw/it_salary_eu/version_2.zip"
+get "https://www.kaggle.com/api/v1/datasets/download/parulpandey/2020-it-salary-survey-for-eu-region?datasetVersionNumber=2" \
+  "$it_salary_zip"
+unzip -o -q "$it_salary_zip" -d "$raw/it_salary_eu"
+rm -f "$it_salary_zip"
 
 # aijobs.net historical, respondent-level salary archive (CC0).
 get "https://raw.githubusercontent.com/foorilla/ai-jobs-net-salaries/main/salaries.csv" \
@@ -40,6 +57,13 @@ get "https://huggingface.co/datasets/Aramente/eu-tech-jobs/resolve/f395dce081dac
   "$raw/huggingface/eu_tech_jobs/metadata.json"
 get "https://huggingface.co/datasets/Aramente/eu-tech-jobs/raw/f395dce081dac22b3724f32fbdec785eec0bfddb/README.md" \
   "$raw/huggingface/eu_tech_jobs/README.md"
+
+# Deutschsprachige BA-Stellenanzeigen mit KldB und teilweise extrahierten
+# Gehaltsbaendern. Der Adapter verwirft unplausibel deklarierte Perioden.
+get "https://huggingface.co/datasets/mischeiwiller/german-job-postings/resolve/a719ae244132ffdb11cef80f9a3cfbe94ad35877/data/german-job-postings.parquet" \
+  "$raw/huggingface/german_job_postings/german-job-postings.parquet"
+get "https://huggingface.co/datasets/mischeiwiller/german-job-postings/raw/a719ae244132ffdb11cef80f9a3cfbe94ad35877/README.md" \
+  "$raw/huggingface/german_job_postings/README.md"
 
 # Die Dataset-Card nennt MIT, dokumentiert die Herkunft aber nicht ausreichend.
 # Deshalb nur nach bewusster lokaler Freigabe herunterladen.
@@ -109,6 +133,10 @@ get "https://www-genesis.destatis.de/genesisWS/rest/2020/catalogue/tables?userna
 # Current public table view (the modern GENESIS UI performs table exports by POST).
 get "https://genesis.destatis.de/datenbank/online/statistic/62361/table/62361-0001" \
   "$raw/destatis/62361-0001_reallohn_nominallohnindex.html"
+# Oeffentlicher Bulk-Export ohne GENESIS-Login: Bruttojahresverdienste nach
+# KldB-Beruf und Geschlecht, einschliesslich Sonderzahlungen.
+get "https://genesis.destatis.de/genesisWS/downloads/00/tables/62361-0034_00.csv" \
+  "$raw/destatis/62361-0034_00.csv"
 
 # BA's authoritative annual table landing page.  The downloadable workbook URL is
 # versioned by BA; the landing HTML is saved to preserve the exact release discovery.

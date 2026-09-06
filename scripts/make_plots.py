@@ -329,11 +329,15 @@ def source_stats() -> dict:
         "hf_tech_postings": "Zalize tech job postings",
         "aijobs": "aijobs.net salary index",
         "so_2025": "Stack Overflow survey 2025",
+        "so_history": "Stack Overflow surveys 2018-2024 (DE)",
+        "it_salary_eu": "EU IT salary survey 2018-2020 (DE)",
+        "hf_german_job_postings": "Stellen-Atlas salary subset (DE)",
         "hf_eu_tech_jobs": "Aramente EU tech jobs",
         "hf_data_professions": "Salary of data professions",
         "ba_entgelt": "BA Entgeltstatistik (official)",
         "bls_oews": "BLS OEWS (official)",
         "eurostat_ses": "Eurostat SES (official)",
+        "destatis_earnings": "Destatis annual earnings (official)",
     }
     rows = []
     grouped = obs.groupby("source")

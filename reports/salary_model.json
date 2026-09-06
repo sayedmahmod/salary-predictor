@@ -1,56 +1,59 @@
 {
-  "n_train": 198165,
-  "n_test": 53663,
-  "n_calibration": 21485,
+  "n_train": 215013,
+  "n_test": 59270,
+  "n_calibration": 23061,
   "split": "grouped",
   "sources": {
     "aijobs": 151139,
     "hf_tech_postings": 99874,
-    "so_2025": 22300
+    "so_2025": 22300,
+    "so_history": 21179,
+    "it_salary_eu": 2567,
+    "hf_german_job_postings": 285
   },
-  "median_absolute_error_eur": 22632.22,
-  "mean_absolute_error_eur": 33895.79,
-  "median_absolute_percentage_error": 0.204,
-  "r2_log": 0.6637,
-  "pinball_loss": 12076.68,
-  "interval_50_coverage": 0.5154,
-  "interval_80_coverage": 0.8216,
+  "median_absolute_error_eur": 21624.36,
+  "mean_absolute_error_eur": 34129.98,
+  "median_absolute_percentage_error": 0.2128,
+  "r2_log": 0.637,
+  "pinball_loss": 12412.13,
+  "interval_50_coverage": 0.5103,
+  "interval_80_coverage": 0.7955,
   "by_country": {
     "US": {
-      "n": 42347,
-      "medape": 0.1992,
-      "medae_eur": 25375.05
-    },
-    "GB": {
-      "n": 2603,
-      "medape": 0.1549,
-      "medae_eur": 7521.92
-    },
-    "CA": {
-      "n": 2133,
-      "medape": 0.2132,
-      "medae_eur": 20646.67
+      "n": 43019,
+      "medape": 0.2055,
+      "medae_eur": 25661.59
     },
     "DE": {
-      "n": 512,
-      "medape": 0.2105,
-      "medae_eur": 14444.46
+      "n": 5189,
+      "medape": 0.1997,
+      "medae_eur": 11615.24
+    },
+    "GB": {
+      "n": 2533,
+      "medape": 0.2871,
+      "medae_eur": 8451.16
+    },
+    "CA": {
+      "n": 2270,
+      "medape": 0.2239,
+      "medae_eur": 20937.06
     },
     "AU": {
-      "n": 423,
-      "medape": 0.1928,
-      "medae_eur": 15749.92
+      "n": 426,
+      "medape": 0.1774,
+      "medae_eur": 15926.72
     },
     "FR": {
-      "n": 366,
-      "medape": 0.258,
-      "medae_eur": 14697.2
+      "n": 385,
+      "medape": 0.2559,
+      "medae_eur": 13767.89
     },
     "NL": {
-      "n": 324,
-      "medape": 0.2864,
-      "medae_eur": 14813.02
+      "n": 319,
+      "medape": 0.1938,
+      "medae_eur": 11166.82
     }
   },
-  "note": "Duplicate-grouped holdout: rows sharing (title, country, salary) never straddle the split. Source-balanced sample weights; intervals conformalised on a held-out calibration slice. Intervals describe conditional data dispersion, not a guarantee."
+  "note": "Duplicate-grouped holdout: rows sharing (title, country, salary) never straddle the split. Source-balanced sample weights with conservative budgets for small supplemental sources; intervals conformalised on a held-out calibration slice. Intervals describe conditional data dispersion, not a guarantee."
 }

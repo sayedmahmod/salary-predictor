@@ -13,11 +13,14 @@ MODELS = ROOT / "models"
 REPORTS = ROOT / "reports"
 
 RAW_STACKOVERFLOW = RAW / "stackoverflow_2025"
+RAW_STACKOVERFLOW_HISTORY = RAW / "stackoverflow_history"
 RAW_AIJOBS = RAW / "aijobs"
 RAW_HF = RAW / "huggingface"
 RAW_BLS = RAW / "bls_oews"
 RAW_BA = RAW / "ba"
 RAW_EUROSTAT = RAW / "eurostat_ses"
+RAW_IT_SALARY_EU = RAW / "it_salary_eu"
+RAW_DESTATIS = RAW / "destatis"
 
 
 def ensure_dirs() -> None:

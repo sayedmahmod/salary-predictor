@@ -11,25 +11,29 @@ advice.
 | Zalize Tech Job Postings | 394,300 | job postings | 107,149 |
 | aijobs.net | 151,445 | salary reports | 151,445 |
 | Stack Overflow 2025 | 49,191 | survey | 23,947 |
+| Stack Overflow 2018-2024 (Germany) | 39,510 | survey | 21,632 |
 | Aramente EU Tech Jobs | 20,318 | job postings | 0 |
+| IT Salary Survey EU 2018-2020 (Germany) | 2,626 | survey | 2,622 |
 | Salary of Data Professions | 2,639 | third-party dataset | 0 |
+| Stellen-Atlas salary subset (Germany) | 351 | job postings | 351 |
 | BA Entgeltstatistik | 157,553 | official aggregates | – |
 | BLS OEWS | 37,249 | official aggregates | – |
 | Eurostat SES | 262 | official aggregates | – |
+| Destatis Verdiensterhebung | 4,443 | official aggregates | – |
 
-In total: 617,893 individual observations, 195,064 aggregate rows, 141 countries
-and 20,097 distinct recognised place names, from 222,482 unique raw titles.
+In total: 660,380 individual observations, 199,507 aggregate rows, 141 countries
+and 20,097 distinct recognised city names, from 229,851 unique raw titles.
 
 ## Job title normalisation
 
 | Method | Rows | Share |
 |---|---:|---:|
-| Rule / alias | 485,532 | 78.6% |
-| Controlled source field | 38,005 | 6.2% |
-| ML model | 34,619 | 5.6% |
-| Deliberately unmatched | 59,737 | 9.7% |
+| Rule / alias | 491,885 | 74.5% |
+| Controlled source field | 67,088 | 10.2% |
+| ML model | 36,128 | 5.5% |
+| Deliberately unmatched | 65,279 | 9.9% |
 
-90.3% of titles were assigned. The title model reaches 97.6% accuracy and 96.5%
+90.1% of rows were assigned. The title model reaches 97.6% accuracy and 96.5%
 macro F1 on a weakly-supervised holdout. That measures agreement with
 automatically generated labels, **not** with a human-annotated gold standard.
 
@@ -40,12 +44,12 @@ n-grams. Replacing the previous SGD classifier raised accuracy from 96.2% to
 
 ## Salary coverage
 
-- 282,541 observations carry a converted EUR annual salary.
-- 271,993 of those (96.3%) receive a quantile within a sufficiently large peer
+- 307,146 observations carry a converted EUR annual salary.
+- 296,056 of those (96.4%) receive a quantile within a sufficiently large peer
   group.
 - Values outside 1,000-2,000,000 EUR/year stay in the raw columns but are
   excluded from quantiles and model training.
-- This produces 3,240 groups across title, country, year and optionally
+- This produces 3,570 groups across title, country, year and optionally
   seniority.
 
 Global medians are not directly comparable, because the populations differ:
@@ -55,6 +59,9 @@ Global medians are not directly comparable, because the populations differ:
 | aijobs.net | 129,294 |
 | Zalize Tech Job Postings | 97,614 |
 | Stack Overflow 2025 | 64,923 |
+| IT Salary Survey EU (Germany) | 69,000 |
+| Stack Overflow 2018-2024 (Germany) | 59,512 |
+| Stellen-Atlas salary subset (Germany) | 54,000 |
 
 ## Salary predictor
 
@@ -63,27 +70,39 @@ salary)` never straddle the split.
 
 | Metric | Value |
 |---|---:|
-| Training rows | 198,165 |
-| Calibration rows | 21,485 |
-| Holdout rows | 53,663 |
-| Median absolute error | 22,632 EUR |
-| Median absolute percentage error | 20.4% |
-| R² on log(salary) | 0.664 |
-| Mean pinball loss | 12,077 |
-| Coverage of p25-p75 | 51.5% (nominal 50%) |
-| Coverage of p10-p90 | 82.2% (nominal 80%) |
+| Training rows | 215,013 |
+| Calibration rows | 23,061 |
+| Holdout rows | 59,270 |
+| Median absolute error | 21,624 EUR |
+| Median absolute percentage error | 21.3% |
+| R² on log(salary) | 0.637 |
+| Mean pinball loss | 12,412 |
+| Coverage of p25-p75 | 51.0% (nominal 50%) |
+| Coverage of p10-p90 | 79.6% (nominal 80%) |
 
 Error by country, on the same holdout:
 
 | Country | Holdout rows | Median APE | Median absolute error |
 |---|---:|---:|---:|
-| US | 42,347 | 19.9% | 25,375 EUR |
-| GB | 2,603 | 15.5% | 7,522 EUR |
-| CA | 2,133 | 21.3% | 20,647 EUR |
-| DE | 512 | 21.1% | 14,444 EUR |
-| AU | 423 | 19.3% | 15,750 EUR |
-| FR | 366 | 25.8% | 14,697 EUR |
-| NL | 324 | 28.6% | 14,813 EUR |
+| US | 43,019 | 20.6% | 25,662 EUR |
+| DE | 5,189 | 20.0% | 11,615 EUR |
+| GB | 2,533 | 28.7% | 8,451 EUR |
+| CA | 2,270 | 22.4% | 20,937 EUR |
+| AU | 426 | 17.7% | 15,927 EUR |
+| FR | 385 | 25.6% | 13,768 EUR |
+| NL | 319 | 19.4% | 11,167 EUR |
+
+Because the expanded holdout contains the newly added German surveys, its
+global metric is not directly comparable to the previous report. On the exact
+same 53,663-row pre-expansion holdout, the old and new artefacts compare as
+follows:
+
+| Fixed holdout | Old model | New model |
+|---|---:|---:|
+| Global median APE | 20.40% | **19.81%** |
+| Global median absolute error | 22,632 EUR | **21,986 EUR** |
+| Germany median APE (n=512) | 21.05% | **20.66%** |
+| Germany median absolute error (n=512) | 14,444 EUR | **13,659 EUR** |
 
 ### What changed against the previous revision
 
@@ -96,7 +115,8 @@ Error by country, on the same holdout:
 | + industry / region / city | 21.5% |
 | + official-statistics prior | 21.4% |
 | + larger ensemble | 21.2% |
-| + retrained title model, conformal bands | **20.4%** |
+| + retrained title model, conformal bands | 20.4% |
+| + German surveys and Destatis, fixed old holdout | **19.8%** |
 
 The previous number was measured on a random holdout. Because about 60% of rows
 are exact repeats of `(title, country, salary)`, identical records sat on both
@@ -112,16 +132,16 @@ Roles with many salary observations, pooled across record types:
 
 | Normalised title | n | Sources | p25 | Median | p75 |
 |---|---:|---:|---:|---:|---:|
-| Full Stack Engineer | 664 | 3 | 48,375 | 65,000 | 80,000 |
-| Backend Engineer | 307 | 3 | 59,000 | 75,000 | 90,000 |
-| Software Engineer | 189 | 3 | 58,976 | 75,000 | 100,000 |
-| Software Architect | 168 | 3 | 80,000 | 94,500 | 115,000 |
-| Research Scientist | 117 | 3 | 50,000 | 62,000 | 75,000 |
-| Data Scientist | 113 | 3 | 60,000 | 75,000 | 106,876 |
-| Data Engineer | 112 | 3 | 66,660 | 81,745 | 111,250 |
-| Frontend Engineer | 95 | 2 | 52,250 | 68,287 | 85,000 |
-| Machine Learning Engineer | 92 | 3 | 79,900 | 99,806 | 130,000 |
-| DevOps Engineer | 84 | 3 | 59,750 | 75,000 | 90,000 |
+| Full Stack Engineer | 6,095 | 5 | 45,725 | 60,000 | 77,333 |
+| Backend Engineer | 5,327 | 5 | 49,700 | 64,389 | 80,217 |
+| Frontend Engineer | 2,563 | 4 | 42,863 | 57,000 | 71,533 |
+| Software Engineer | 2,268 | 6 | 50,231 | 64,633 | 80,000 |
+| Research Scientist | 1,224 | 5 | 40,185 | 53,833 | 67,447 |
+| Data Scientist | 1,137 | 5 | 51,578 | 65,000 | 83,385 |
+| Mobile Engineer | 1,082 | 4 | 49,245 | 64,015 | 78,117 |
+| Database Administrator | 980 | 4 | 33,481 | 48,292 | 64,454 |
+| Data Analyst | 681 | 5 | 45,072 | 58,976 | 75,400 |
+| Embedded Engineer | 623 | 4 | 53,104 | 67,000 | 82,315 |
 
 Amounts in EUR/year, rounded. These are **empirical** quantiles over the
 collected observations, not model output - useful as a reality check on what the

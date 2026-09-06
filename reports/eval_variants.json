@@ -36,7 +36,12 @@
   },
   {
     "label": "+ retrained title model, conformal bands",
-    "kind": "final",
+    "kind": "step",
     "medape": 0.204
+  },
+  {
+    "label": "+ German surveys and Destatis (fixed old holdout)",
+    "kind": "final",
+    "medape": 0.1981
   }
 ]

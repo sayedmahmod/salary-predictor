@@ -252,8 +252,9 @@ Features:
   the BA Entgeltstatistik and BLS OEWS aggregates, which anchors roles and
   countries where the microdata is thin
 
-Sources are weighted to contribute equally, so one large posting source cannot
-dominate the model. Quantiles are trained independently and sorted afterwards,
+Established sources are balanced so one large posting source cannot dominate
+the model. Smaller supplemental German sources use conservative source budgets,
+and older survey rows receive a recency weight. Quantiles are trained independently and sorted afterwards,
 which guarantees a valid distribution, and the resulting bands are then
 conformalised on a held-out calibration slice so their coverage matches what they
 claim.
@@ -272,6 +273,9 @@ must stay visible in any published result derived from this pipeline.**
 | Source | Licence | Attribution required |
 |---|---|---|
 | [Stack Overflow Developer Survey 2025](https://github.com/StackExchange/Survey/tree/main/packages/archive/2025) | ODbL 1.0, contents DbCL 1.0 | Yes, plus share-alike |
+| [Stack Overflow Developer Surveys 2018-2024](https://github.com/StackExchange/Survey/tree/main/packages/archive) | ODbL 1.0, contents DbCL 1.0 | Yes, plus share-alike |
+| [IT Salary Survey EU 2018-2020](https://www.kaggle.com/datasets/parulpandey/2020-it-salary-survey-for-eu-region) | CC0 1.0 | Not required, given anyway |
+| [Stellen-Atlas / German Job Postings](https://huggingface.co/datasets/mischeiwiller/german-job-postings) | CC BY 4.0 | Yes, plus change notice |
 | [aijobs.net Salary Index](https://github.com/foorilla/ai-jobs-net-salaries) | CC0 1.0 | Not required, given anyway |
 | [Aramente/eu-tech-jobs](https://huggingface.co/datasets/Aramente/eu-tech-jobs) | CC BY 4.0 | Yes, plus change notice |
 | [Zalize Tech Job Postings](https://huggingface.co/datasets/zalizedata/tech-job-postings-salary-dataset) | CC BY-NC 4.0 | Yes, **non-commercial only** |
@@ -279,13 +283,17 @@ must stay visible in any published result derived from this pipeline.**
 | [BA Entgeltstatistik](https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Fachstatistiken/Beschaeftigung/Entgelt/Entgelt-Nav.html) | Datenlizenz Deutschland - Namensnennung 2.0 | Yes |
 | [BLS OEWS](https://www.bls.gov/oes/tables.htm) | Public domain (U.S. Government) | Requested by the BLS |
 | [Eurostat SES](https://ec.europa.eu/eurostat/web/labour-market/information-data/earnings) | Re-use with source acknowledgement | Yes, plus change notice |
+| [Destatis Verdiensterhebung 62361-0034](https://genesis.destatis.de/datenbank/online/statistic/62361/table/62361-0034) | Datenlizenz Deutschland - Namensnennung 2.0 | Yes |
 
 ### Required notices
 
-> - Contains information from the **Stack Overflow Developer Survey 2025**, made
+> - Contains information from the **Stack Overflow Developer Surveys 2018-2025**, made
 >   available under the Open Database License (ODbL) 1.0; individual contents
 >   under the Database Contents License (DbCL) 1.0.
 > - Source: **aijobs.net** Global AI, ML and Data Science Salary Index (CC0 1.0).
+> - Source: **IT Salary Survey for EU region 2018-2020** (CC0 1.0); Germany subset.
+> - Source: **mischeiwiller/german-job-postings / Stellen-Atlas** (CC BY 4.0);
+>   salary rows conservatively filtered and normalised.
 > - Source: **Aramente/eu-tech-jobs** (CC BY 4.0); data cleaned and normalised.
 > - **DataForge (data.zalize.com)**, Tech Job Postings Salary Dataset
 >   (CC BY-NC 4.0); data cleaned and normalised.
@@ -293,6 +301,8 @@ must stay visible in any published result derived from this pipeline.**
 > - Source: **U.S. Bureau of Labor Statistics**, Occupational Employment and Wage
 >   Statistics; transformed output.
 > - Source: **Eurostat**, Structure of Earnings Survey; transformed output.
+> - Source: **Statistisches Bundesamt (Destatis)**, Verdiensterhebung,
+>   table 62361-0034; transformed output.
 
 Two constraints deserve special attention:
 
@@ -342,7 +352,7 @@ Local outputs:
 | File | Contents |
 |---|---|
 | `observations.parquet` | survey responses and job postings |
-| `aggregates.parquet` | BA, BLS and Eurostat statistics |
+| `aggregates.parquet` | BA, BLS, Eurostat and Destatis statistics |
 | `quantiles.parquet` | empirical salary distributions |
 | `job_title_taxonomy.parquet` | codes, labels, aliases and crosswalks |
 | `manifest.json` | row counts, sources and validation |

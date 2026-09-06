@@ -9,15 +9,11 @@
   `data/raw/ba/jahreszahlen/` and are processed.
 - **Eurostat SES:** the German API exports are present; the annual table is
   processed.
-
-## Blocked on credentials
-
-1. **Destatis:** open table `62361-0034` (gross annual earnings by sex and
-   occupation) in GENESIS, widen the selection if needed, and save the CSV or
-   XLSX download under `data/raw/destatis/62361-0034/`.
-
-Once the file is in place, add a Destatis adapter following the pattern in
-`src/salarykit/sources/` and register it in the build.
+- **Destatis 62361-0034:** the public bulk CSV is downloaded without credentials
+  and processed into annual KldB aggregates.
+- **German salary supplements:** Stack Overflow 2018-2024, IT Salary Survey EU
+  2018-2020 and the conservatively filtered Stellen-Atlas salary subset are
+  downloaded and processed.
 
 ## Access to request
 

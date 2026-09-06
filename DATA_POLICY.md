@@ -46,13 +46,16 @@ committing large or sensitive files.
 | Source | Stated licence / rule | How this project treats it |
 |---|---|---|
 | aijobs.net Salary Index | CC0 1.0 | Use permitted; raw data still stays out of the repository |
-| Stack Overflow Developer Survey 2025 | ODbL 1.0, contents under DbCL 1.0 | Attribution and share-alike apply; do not redistribute inside a mixed dataset |
+| Stack Overflow Developer Surveys 2018-2025 | ODbL 1.0, contents under DbCL 1.0 | Attribution and share-alike apply; do not redistribute inside a mixed dataset |
+| IT Salary Survey EU 2018-2020 | CC0 1.0 | Use permitted; build keeps a conservatively identified Germany subset |
+| Stellen-Atlas German Job Postings | CC BY 4.0 | Attribution and a change notice are required; parsed salary periods are quality-filtered |
 | Aramente EU Tech Jobs | data under CC BY 4.0 | Attribution and a change notice are required |
 | Salary of Data Professions | dataset card states MIT; provenance barely documented | Do not redistribute; local, optional input only |
 | Zalize Tech Job Postings | CC BY-NC 4.0 | Academic/personal use only; attribution and backlink; not for commercial use |
 | BA Entgeltstatistik | Datenlizenz Deutschland - Namensnennung 2.0, per the source | Keep the source credit |
 | BLS OEWS | Public domain; the BLS asks to be cited | Keep the source credit |
 | Eurostat SES | Re-use permitted with source acknowledgement | Name the source and mark changes |
+| Destatis Verdiensterhebung 62361-0034 | Datenlizenz Deutschland - Namensnennung 2.0 | Keep the source credit and identify transformations |
 | Levels.fyi / SOEP | no freely embeddable dataset | Nothing published without separate clearance |
 
 ## Required attribution notices
@@ -60,15 +63,20 @@ committing large or sensitive files.
 Whenever results built from this pipeline are published, at least the following
 notices should stay visible:
 
-- Contains information from the Stack Overflow Developer Survey 2025, made
+- Contains information from the Stack Overflow Developer Surveys 2018-2025, made
   available under ODbL 1.0; individual contents under DbCL 1.0.
 - Source: aijobs.net Global AI, ML and Data Science Salary Index (CC0 1.0).
+- Source: IT Salary Survey for EU region 2018-2020 (CC0 1.0); Germany subset.
+- Source: mischeiwiller/german-job-postings / Stellen-Atlas (CC BY 4.0); data
+  filtered and normalised.
 - Source: Aramente/eu-tech-jobs (CC BY 4.0); data cleaned and normalised.
 - DataForge (data.zalize.com), Tech Job Postings Salary Dataset (CC BY-NC 4.0);
   data cleaned and normalised.
 - Source: Statistik der Bundesagentur für Arbeit; transformed output.
 - Source: U.S. Bureau of Labor Statistics, OEWS; transformed output.
 - Source: Eurostat, Structure of Earnings Survey; transformed output.
+- Source: Statistisches Bundesamt (Destatis), Verdiensterhebung, table
+  62361-0034; transformed output.
 
 ## If data is ever to be published
 

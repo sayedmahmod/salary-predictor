@@ -13,19 +13,23 @@ from salarykit import paths, schema
 from salarykit.money import build_fx_table
 from salarykit.quantiles import (MAX_ANNUAL_EUR, MIN_ANNUAL_EUR,
                                  attach_salary_quantiles, build_quantile_table)
-from salarykit.sources import (aijobs, ba_entgelt, bls_oews, eurostat_ses,
-                               hf_data_professions, hf_eu_tech_jobs,
-                               hf_tech_postings, stackoverflow)
+from salarykit.sources import (aijobs, ba_entgelt, bls_oews, destatis_earnings,
+                               eurostat_ses, hf_data_professions,
+                               hf_eu_tech_jobs, hf_german_job_postings,
+                               hf_tech_postings, it_salary_eu, stackoverflow,
+                               stackoverflow_history)
 from salarykit.titles.predict import JobTitlePredictor
 from salarykit.titles.taxonomy import FAMILIES, ROLES
 
 OBSERVATION_SOURCES = {
     module.SOURCE: module for module in
-    (stackoverflow, aijobs, hf_tech_postings, hf_eu_tech_jobs,
-     hf_data_professions)
+    (stackoverflow, stackoverflow_history, it_salary_eu, aijobs,
+     hf_tech_postings, hf_eu_tech_jobs, hf_data_professions,
+     hf_german_job_postings)
 }
 AGGREGATE_SOURCES = {
-    module.SOURCE: module for module in (bls_oews, ba_entgelt, eurostat_ses)
+    module.SOURCE: module for module in
+    (bls_oews, ba_entgelt, eurostat_ses, destatis_earnings)
 }
 ALL_SOURCES = {**OBSERVATION_SOURCES, **AGGREGATE_SOURCES}
 

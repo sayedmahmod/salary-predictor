@@ -37,10 +37,13 @@ individual person, and its output is not an offer, a benchmark or advice.
 
 ## Required source notices
 
-> - Contains information from the **Stack Overflow Developer Survey 2025**, made
+> - Contains information from the **Stack Overflow Developer Surveys 2018-2025**, made
 >   available under the Open Database License (ODbL) 1.0; individual contents
 >   under the Database Contents License (DbCL) 1.0.
 > - Source: **aijobs.net** Global AI, ML and Data Science Salary Index (CC0 1.0).
+> - Source: **IT Salary Survey for EU region 2018-2020** (CC0 1.0); Germany subset.
+> - Source: **mischeiwiller/german-job-postings / Stellen-Atlas** (CC BY 4.0);
+>   data filtered and normalised.
 > - Source: **Aramente/eu-tech-jobs** (CC BY 4.0); data cleaned and normalised.
 > - **DataForge (data.zalize.com)**, Tech Job Postings Salary Dataset
 >   (CC BY-NC 4.0); data cleaned and normalised.
@@ -48,6 +51,8 @@ individual person, and its output is not an offer, a benchmark or advice.
 > - Source: **U.S. Bureau of Labor Statistics**, Occupational Employment and Wage
 >   Statistics; transformed output.
 > - Source: **Eurostat**, Structure of Earnings Survey; transformed output.
+> - Source: **Statistisches Bundesamt (Destatis)**, Verdiensterhebung,
+>   table 62361-0034; transformed output.
 
 Retraining from source is described in the
 [README](../README.md#building-the-dataset-locally); the source matrix and the

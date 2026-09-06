@@ -84,6 +84,16 @@ CALIBRATION_FRACTION = 0.10
 MISSING = "__missing__"
 OTHER = "__other__"
 
+# Gesamtbudget je zusaetzlicher Quelle relativ zu einer etablierten
+# Hauptquelle. Die historischen SO-Jahrgaenge stecken bereits gemeinsam in
+# ``so_history``; kleine bzw. aus Titeln extrahierte DE-Saetze duerfen trotz
+# Source-Balancing kein volles Hauptquellengewicht erhalten.
+SOURCE_WEIGHT_BUDGET = {
+    "so_history": 0.50,
+    "it_salary_eu": 0.25,
+    "hf_german_job_postings": 0.05,
+}
+
 
 @dataclass
 class SalaryTrainReport:
@@ -119,7 +129,8 @@ class SalaryTrainReport:
             "by_country": self.by_country,
             "note": ("Duplicate-grouped holdout: rows sharing (title, country, "
                      "salary) never straddle the split. Source-balanced sample "
-                     "weights; intervals conformalised on a held-out "
+                     "weights with conservative budgets for small supplemental "
+                     "sources; intervals conformalised on a held-out "
                      "calibration slice. Intervals describe conditional data "
                      "dispersion, not a guarantee."),
         }
@@ -132,7 +143,7 @@ def training_frame(observations: pd.DataFrame) -> pd.DataFrame:
     mask = (salary.between(MIN_ANNUAL_EUR, MAX_ANNUAL_EUR) & code.notna() &
             (code != "") & (code != "other.unknown"))
     columns = [*CAT_FEATURES, *NUM_FEATURES, TEXT_FEATURE,
-               "salary_annual_eur", "source", "job_title"]
+               "salary_annual_eur", "source", "job_title", "weight"]
     available = [c for c in columns if c in observations.columns]
     frame = observations.loc[mask, available].copy()
     for missing in set(columns) - set(available):
@@ -423,13 +434,21 @@ class SalaryModel:
         x_test = shell._matrix(frame.iloc[test_idx])
         y = np.log1p(frame.salary_annual_eur.to_numpy(dtype=float))
 
-        # Jede Quelle erhaelt insgesamt dasselbe Gewicht. Sonst wuerde eine
-        # einzelne grosse Posting-Quelle das Modell fast vollstaendig bestimmen.
+        # Jede etablierte Quelle erhaelt dasselbe Grundgewicht. Historische
+        # Jahrgaenge sind bereits in genau einer Quelle zusammengefasst;
+        # SOURCE_WEIGHT_BUDGET begrenzt kleine/sekundaere Ergaenzungen. Das
+        # optionale Zeilengewicht bildet danach Recency/Extraktionsqualitaet ab.
         fit_sources = frame.iloc[fit_rows].source.astype(str)
         source_counts = fit_sources.value_counts()
         weights = fit_sources.map(
-            lambda source: len(fit_sources) / (len(source_counts) * source_counts[source])
+            lambda source: len(fit_sources) /
+            (len(source_counts) * source_counts[source]) *
+            SOURCE_WEIGHT_BUDGET.get(source, 1.0)
         ).to_numpy(dtype=float)
+        if "weight" in frame:
+            row_quality = pd.to_numeric(frame.iloc[fit_rows]["weight"], errors="coerce")
+            weights = weights * row_quality.fillna(1.0).clip(
+                0.05, 10.0).to_numpy(dtype=float)
 
         models = {}
         predictions = {}
