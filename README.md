@@ -1,10 +1,6 @@
-<!-- Once this repository has a GitHub remote, paste the CI badge back in below
-     the heading, with OWNER/REPO replaced by the actual path:
-[![tests](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
--->
-
 # salarykit
 
+[![tests](https://github.com/sayedmahmod/salary-predictor/actions/workflows/ci.yml/badge.svg)](https://github.com/sayedmahmod/salary-predictor/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![code style: stdlib](https://img.shields.io/badge/deps-pandas%20%7C%20scikit--learn-orange.svg)](pyproject.toml)
