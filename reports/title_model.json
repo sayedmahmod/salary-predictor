@@ -1,0 +1,665 @@
+{
+  "n_train": 54485,
+  "n_test": 9615,
+  "n_classes": 107,
+  "accuracy": 0.9764,
+  "macro_f1": 0.9646,
+  "weighted_f1": 0.9763,
+  "per_class": {
+    "admin.assistant": {
+      "precision": 0.9836065573770492,
+      "recall": 0.9836065573770492,
+      "f1-score": 0.9836065573770492,
+      "support": 61.0
+    },
+    "consulting.consultant": {
+      "precision": 0.9611650485436893,
+      "recall": 0.9705882352941176,
+      "f1-score": 0.9658536585365853,
+      "support": 204.0
+    },
+    "customer.service": {
+      "precision": 0.9554140127388535,
+      "recall": 0.9933774834437086,
+      "f1-score": 0.974025974025974,
+      "support": 151.0
+    },
+    "customer.success": {
+      "precision": 1.0,
+      "recall": 0.9888888888888889,
+      "f1-score": 0.994413407821229,
+      "support": 90.0
+    },
+    "data.analyst": {
+      "precision": 0.9590163934426229,
+      "recall": 0.936,
+      "f1-score": 0.9473684210526315,
+      "support": 125.0
+    },
+    "data.analytics_engineer": {
+      "precision": 1.0,
+      "recall": 0.9090909090909091,
+      "f1-score": 0.9523809523809523,
+      "support": 11.0
+    },
+    "data.architect": {
+      "precision": 1.0,
+      "recall": 0.9333333333333333,
+      "f1-score": 0.9655172413793104,
+      "support": 15.0
+    },
+    "data.bi": {
+      "precision": 0.9411764705882353,
+      "recall": 0.9411764705882353,
+      "f1-score": 0.9411764705882353,
+      "support": 17.0
+    },
+    "data.dba": {
+      "precision": 0.8571428571428571,
+      "recall": 1.0,
+      "f1-score": 0.9230769230769231,
+      "support": 12.0
+    },
+    "data.engineer": {
+      "precision": 0.9571428571428572,
+      "recall": 0.9710144927536232,
+      "f1-score": 0.9640287769784173,
+      "support": 69.0
+    },
+    "data.governance": {
+      "precision": 0.8823529411764706,
+      "recall": 0.9375,
+      "f1-score": 0.9090909090909091,
+      "support": 32.0
+    },
+    "data.ml_engineer": {
+      "precision": 0.9882352941176471,
+      "recall": 0.9710982658959537,
+      "f1-score": 0.9795918367346939,
+      "support": 173.0
+    },
+    "data.ml_scientist": {
+      "precision": 0.9230769230769231,
+      "recall": 0.96,
+      "f1-score": 0.9411764705882353,
+      "support": 25.0
+    },
+    "data.quant": {
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1-score": 0.9333333333333333,
+      "support": 14.0
+    },
+    "data.scientist": {
+      "precision": 0.971830985915493,
+      "recall": 0.9583333333333334,
+      "f1-score": 0.965034965034965,
+      "support": 72.0
+    },
+    "data.statistician": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "design.graphic": {
+      "precision": 0.9130434782608695,
+      "recall": 1.0,
+      "f1-score": 0.9545454545454546,
+      "support": 21.0
+    },
+    "design.product_designer": {
+      "precision": 0.9571428571428572,
+      "recall": 0.9852941176470589,
+      "f1-score": 0.9710144927536232,
+      "support": 68.0
+    },
+    "design.ux_research": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1-score": 0.8571428571428571,
+      "support": 4.0
+    },
+    "education.teacher": {
+      "precision": 0.9819819819819819,
+      "recall": 0.9478260869565217,
+      "f1-score": 0.9646017699115044,
+      "support": 115.0
+    },
+    "eng.chemical": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 6.0
+    },
+    "eng.civil": {
+      "precision": 0.9848484848484849,
+      "recall": 1.0,
+      "f1-score": 0.9923664122137404,
+      "support": 65.0
+    },
+    "eng.electrical": {
+      "precision": 0.9655172413793104,
+      "recall": 0.9824561403508771,
+      "f1-score": 0.9739130434782609,
+      "support": 57.0
+    },
+    "eng.hse": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 9.0
+    },
+    "eng.industrial": {
+      "precision": 0.9473684210526315,
+      "recall": 0.9863013698630136,
+      "f1-score": 0.9664429530201343,
+      "support": 73.0
+    },
+    "eng.mechanical": {
+      "precision": 1.0,
+      "recall": 0.9928057553956835,
+      "f1-score": 0.9963898916967509,
+      "support": 139.0
+    },
+    "finance.accountant": {
+      "precision": 0.9375,
+      "recall": 0.9905660377358491,
+      "f1-score": 0.963302752293578,
+      "support": 106.0
+    },
+    "finance.analyst": {
+      "precision": 1.0,
+      "recall": 0.8867924528301887,
+      "f1-score": 0.94,
+      "support": 53.0
+    },
+    "finance.controller": {
+      "precision": 0.8857142857142857,
+      "recall": 1.0,
+      "f1-score": 0.9393939393939394,
+      "support": 31.0
+    },
+    "finance.manager": {
+      "precision": 1.0,
+      "recall": 0.9285714285714286,
+      "f1-score": 0.9629629629629629,
+      "support": 14.0
+    },
+    "generic.analyst": {
+      "precision": 0.9779005524861878,
+      "recall": 0.9779005524861878,
+      "f1-score": 0.9779005524861878,
+      "support": 181.0
+    },
+    "generic.architect": {
+      "precision": 0.918918918918919,
+      "recall": 0.9855072463768116,
+      "f1-score": 0.951048951048951,
+      "support": 69.0
+    },
+    "generic.associate": {
+      "precision": 0.9494949494949495,
+      "recall": 0.9690721649484536,
+      "f1-score": 0.9591836734693877,
+      "support": 97.0
+    },
+    "generic.director": {
+      "precision": 1.0,
+      "recall": 0.8518518518518519,
+      "f1-score": 0.92,
+      "support": 27.0
+    },
+    "generic.engineer": {
+      "precision": 0.9675213675213675,
+      "recall": 0.9675213675213675,
+      "f1-score": 0.9675213675213675,
+      "support": 585.0
+    },
+    "generic.manager": {
+      "precision": 0.9829787234042553,
+      "recall": 0.9685534591194969,
+      "f1-score": 0.9757127771911299,
+      "support": 477.0
+    },
+    "generic.specialist": {
+      "precision": 0.9662921348314607,
+      "recall": 0.9885057471264368,
+      "f1-score": 0.9772727272727273,
+      "support": 522.0
+    },
+    "generic.technician": {
+      "precision": 0.9788359788359788,
+      "recall": 0.9585492227979274,
+      "f1-score": 0.9685863874345549,
+      "support": 193.0
+    },
+    "health.nurse": {
+      "precision": 0.9831932773109243,
+      "recall": 1.0,
+      "f1-score": 0.9915254237288136,
+      "support": 117.0
+    },
+    "health.pharmacy": {
+      "precision": 0.9545454545454546,
+      "recall": 0.9130434782608695,
+      "f1-score": 0.9333333333333333,
+      "support": 23.0
+    },
+    "health.physician": {
+      "precision": 0.88,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.8979591836734694,
+      "support": 24.0
+    },
+    "health.therapist": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 47.0
+    },
+    "hospitality.chef": {
+      "precision": 1.0,
+      "recall": 0.9819819819819819,
+      "f1-score": 0.990909090909091,
+      "support": 111.0
+    },
+    "hospitality.service": {
+      "precision": 0.967741935483871,
+      "recall": 1.0,
+      "f1-score": 0.9836065573770492,
+      "support": 30.0
+    },
+    "hr.generalist": {
+      "precision": 0.975,
+      "recall": 0.9285714285714286,
+      "f1-score": 0.9512195121951219,
+      "support": 42.0
+    },
+    "hr.recruiter": {
+      "precision": 0.9859154929577465,
+      "recall": 0.9333333333333333,
+      "f1-score": 0.958904109589041,
+      "support": 75.0
+    },
+    "infra.cloud": {
+      "precision": 1.0,
+      "recall": 0.9047619047619048,
+      "f1-score": 0.95,
+      "support": 21.0
+    },
+    "infra.devops": {
+      "precision": 1.0,
+      "recall": 0.8888888888888888,
+      "f1-score": 0.9411764705882353,
+      "support": 45.0
+    },
+    "infra.network": {
+      "precision": 1.0,
+      "recall": 0.9444444444444444,
+      "f1-score": 0.9714285714285714,
+      "support": 18.0
+    },
+    "infra.sre": {
+      "precision": 0.9642857142857143,
+      "recall": 1.0,
+      "f1-score": 0.9818181818181818,
+      "support": 54.0
+    },
+    "infra.systems": {
+      "precision": 0.990909090909091,
+      "recall": 0.9819819819819819,
+      "f1-score": 0.9864253393665159,
+      "support": 111.0
+    },
+    "it.sap": {
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1-score": 0.9090909090909091,
+      "support": 12.0
+    },
+    "it.support": {
+      "precision": 0.9811320754716981,
+      "recall": 0.9904761904761905,
+      "f1-score": 0.985781990521327,
+      "support": 105.0
+    },
+    "legal.compliance": {
+      "precision": 1.0,
+      "recall": 0.96,
+      "f1-score": 0.9795918367346939,
+      "support": 25.0
+    },
+    "legal.counsel": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 38.0
+    },
+    "legal.paralegal": {
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.8,
+      "support": 6.0
+    },
+    "management.engineering": {
+      "precision": 0.9926470588235294,
+      "recall": 0.9926470588235294,
+      "f1-score": 0.9926470588235294,
+      "support": 136.0
+    },
+    "management.executive": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 15.0
+    },
+    "management.general": {
+      "precision": 0.9772727272727273,
+      "recall": 0.9772727272727273,
+      "f1-score": 0.9772727272727273,
+      "support": 132.0
+    },
+    "marketing.manager": {
+      "precision": 0.9856459330143541,
+      "recall": 0.9716981132075472,
+      "f1-score": 0.9786223277909739,
+      "support": 212.0
+    },
+    "marketing.performance": {
+      "precision": 0.8571428571428571,
+      "recall": 1.0,
+      "f1-score": 0.9230769230769231,
+      "support": 12.0
+    },
+    "marketing.pr": {
+      "precision": 1.0,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.9565217391304348,
+      "support": 12.0
+    },
+    "marketing.seo_content": {
+      "precision": 0.9824561403508771,
+      "recall": 0.9491525423728814,
+      "f1-score": 0.9655172413793104,
+      "support": 59.0
+    },
+    "operations.facility": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 20.0
+    },
+    "operations.manager": {
+      "precision": 0.9785276073619632,
+      "recall": 0.9937694704049844,
+      "f1-score": 0.9860896445131375,
+      "support": 321.0
+    },
+    "operations.strategy": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 35.0
+    },
+    "other.hairdresser": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 37.0
+    },
+    "other.security_guard": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1-score": 0.8571428571428571,
+      "support": 8.0
+    },
+    "product.analyst": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 10.0
+    },
+    "product.business_analyst": {
+      "precision": 0.9857142857142858,
+      "recall": 0.9583333333333334,
+      "f1-score": 0.971830985915493,
+      "support": 72.0
+    },
+    "product.manager": {
+      "precision": 1.0,
+      "recall": 0.9918367346938776,
+      "f1-score": 0.9959016393442623,
+      "support": 245.0
+    },
+    "product.program_manager": {
+      "precision": 0.9918032786885246,
+      "recall": 1.0,
+      "f1-score": 0.9958847736625515,
+      "support": 121.0
+    },
+    "product.project_manager": {
+      "precision": 0.9924812030075187,
+      "recall": 0.9850746268656716,
+      "f1-score": 0.9887640449438202,
+      "support": 268.0
+    },
+    "quality.qa_engineer": {
+      "precision": 0.9904761904761905,
+      "recall": 0.9629629629629629,
+      "f1-score": 0.9765258215962441,
+      "support": 108.0
+    },
+    "quality.qm": {
+      "precision": 0.9259259259259259,
+      "recall": 1.0,
+      "f1-score": 0.9615384615384616,
+      "support": 50.0
+    },
+    "research.engineer": {
+      "precision": 1.0,
+      "recall": 0.8846153846153846,
+      "f1-score": 0.9387755102040817,
+      "support": 26.0
+    },
+    "research.scientist": {
+      "precision": 0.9594594594594594,
+      "recall": 0.9342105263157895,
+      "f1-score": 0.9466666666666667,
+      "support": 76.0
+    },
+    "retail.cashier": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 8.0
+    },
+    "retail.sales_assistant": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 115.0
+    },
+    "sales.account_executive": {
+      "precision": 0.996309963099631,
+      "recall": 1.0,
+      "f1-score": 0.9981515711645101,
+      "support": 270.0
+    },
+    "sales.account_manager": {
+      "precision": 1.0,
+      "recall": 0.9861111111111112,
+      "f1-score": 0.993006993006993,
+      "support": 144.0
+    },
+    "sales.business_development": {
+      "precision": 0.9712230215827338,
+      "recall": 1.0,
+      "f1-score": 0.9854014598540146,
+      "support": 135.0
+    },
+    "sales.engineer": {
+      "precision": 0.979381443298969,
+      "recall": 0.9895833333333334,
+      "f1-score": 0.9844559585492227,
+      "support": 96.0
+    },
+    "sales.manager": {
+      "precision": 1.0,
+      "recall": 0.9902912621359223,
+      "f1-score": 0.9951219512195122,
+      "support": 103.0
+    },
+    "sales.representative": {
+      "precision": 0.9776785714285714,
+      "recall": 0.9776785714285714,
+      "f1-score": 0.9776785714285714,
+      "support": 224.0
+    },
+    "sales.sdr": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 89.0
+    },
+    "security.analyst": {
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1-score": 0.9,
+      "support": 20.0
+    },
+    "security.engineer": {
+      "precision": 0.984375,
+      "recall": 0.9264705882352942,
+      "f1-score": 0.9545454545454546,
+      "support": 68.0
+    },
+    "software.architect": {
+      "precision": 0.9880952380952381,
+      "recall": 1.0,
+      "f1-score": 0.9940119760479041,
+      "support": 83.0
+    },
+    "software.backend": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 107.0
+    },
+    "software.embedded": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 34.0
+    },
+    "software.engineer": {
+      "precision": 0.9724473257698542,
+      "recall": 0.9933774834437086,
+      "f1-score": 0.9828009828009828,
+      "support": 604.0
+    },
+    "software.frontend": {
+      "precision": 0.9743589743589743,
+      "recall": 1.0,
+      "f1-score": 0.987012987012987,
+      "support": 38.0
+    },
+    "software.fullstack": {
+      "precision": 0.9895833333333334,
+      "recall": 0.9895833333333334,
+      "f1-score": 0.9895833333333334,
+      "support": 96.0
+    },
+    "software.games": {
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1-score": 0.9090909090909091,
+      "support": 6.0
+    },
+    "software.mlops": {
+      "precision": 1.0,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.9230769230769231,
+      "support": 7.0
+    },
+    "software.mobile": {
+      "precision": 0.9655172413793104,
+      "recall": 0.9333333333333333,
+      "f1-score": 0.9491525423728814,
+      "support": 30.0
+    },
+    "software.platform": {
+      "precision": 0.9555555555555556,
+      "recall": 0.9772727272727273,
+      "f1-score": 0.9662921348314607,
+      "support": 44.0
+    },
+    "supply.manager": {
+      "precision": 0.9347826086956522,
+      "recall": 0.9347826086956522,
+      "f1-score": 0.9347826086956522,
+      "support": 92.0
+    },
+    "supply.procurement": {
+      "precision": 0.94,
+      "recall": 0.94,
+      "f1-score": 0.94,
+      "support": 50.0
+    },
+    "supply.warehouse": {
+      "precision": 0.9642857142857143,
+      "recall": 0.9,
+      "f1-score": 0.9310344827586207,
+      "support": 30.0
+    },
+    "trades.automotive": {
+      "precision": 1.0,
+      "recall": 0.9473684210526315,
+      "f1-score": 0.972972972972973,
+      "support": 19.0
+    },
+    "trades.construction": {
+      "precision": 0.9411764705882353,
+      "recall": 0.8888888888888888,
+      "f1-score": 0.9142857142857143,
+      "support": 18.0
+    },
+    "trades.electrician": {
+      "precision": 1.0,
+      "recall": 0.9333333333333333,
+      "f1-score": 0.9655172413793104,
+      "support": 15.0
+    },
+    "trades.maintenance": {
+      "precision": 0.9722222222222222,
+      "recall": 0.9722222222222222,
+      "f1-score": 0.9722222222222222,
+      "support": 72.0
+    },
+    "trades.production": {
+      "precision": 0.9444444444444444,
+      "recall": 0.9807692307692307,
+      "f1-score": 0.9622641509433962,
+      "support": 52.0
+    },
+    "transport.driver": {
+      "precision": 0.9759036144578314,
+      "recall": 0.9878048780487805,
+      "f1-score": 0.9818181818181818,
+      "support": 82.0
+    },
+    "accuracy": 0.9763910556422257,
+    "macro avg": {
+      "precision": 0.9738302445601423,
+      "recall": 0.958166550799959,
+      "f1-score": 0.9645683095383564,
+      "support": 9615.0
+    },
+    "weighted avg": {
+      "precision": 0.9768125739957707,
+      "recall": 0.9763910556422257,
+      "f1-score": 0.9763132378170863,
+      "support": 9615.0
+    }
+  }
+}

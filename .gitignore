@@ -1,0 +1,45 @@
+# Never publish downloaded or generated data
+data/raw/
+data/interim/
+data/processed/
+
+# Trained artefacts ride along: they carry fitted vocabularies and group-level
+# aggregates, never row-level records. See DATA_POLICY.md.
+
+# Reports: aggregate metrics are publishable, verbatim source text is not
+reports/*.json
+!reports/salary_model.json
+!reports/eval_variants.json
+!reports/title_model.json
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editors and operating systems
+.DS_Store
+._*
+.idea/
+.vscode/
+
+# Large dataset formats are never repository content
+*.parquet
+*.feather
+*.xlsx
+*.xls
+*.zip

@@ -1,0 +1,56 @@
+{
+  "n_train": 198165,
+  "n_test": 53663,
+  "n_calibration": 21485,
+  "split": "grouped",
+  "sources": {
+    "aijobs": 151139,
+    "hf_tech_postings": 99874,
+    "so_2025": 22300
+  },
+  "median_absolute_error_eur": 22632.22,
+  "mean_absolute_error_eur": 33895.79,
+  "median_absolute_percentage_error": 0.204,
+  "r2_log": 0.6637,
+  "pinball_loss": 12076.68,
+  "interval_50_coverage": 0.5154,
+  "interval_80_coverage": 0.8216,
+  "by_country": {
+    "US": {
+      "n": 42347,
+      "medape": 0.1992,
+      "medae_eur": 25375.05
+    },
+    "GB": {
+      "n": 2603,
+      "medape": 0.1549,
+      "medae_eur": 7521.92
+    },
+    "CA": {
+      "n": 2133,
+      "medape": 0.2132,
+      "medae_eur": 20646.67
+    },
+    "DE": {
+      "n": 512,
+      "medape": 0.2105,
+      "medae_eur": 14444.46
+    },
+    "AU": {
+      "n": 423,
+      "medape": 0.1928,
+      "medae_eur": 15749.92
+    },
+    "FR": {
+      "n": 366,
+      "medape": 0.258,
+      "medae_eur": 14697.2
+    },
+    "NL": {
+      "n": 324,
+      "medape": 0.2864,
+      "medae_eur": 14813.02
+    }
+  },
+  "note": "Duplicate-grouped holdout: rows sharing (title, country, salary) never straddle the split. Source-balanced sample weights; intervals conformalised on a held-out calibration slice. Intervals describe conditional data dispersion, not a guarantee."
+}

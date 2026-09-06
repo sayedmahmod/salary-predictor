@@ -1,0 +1,42 @@
+[
+  {
+    "label": "Previous number (random split)",
+    "kind": "baseline",
+    "medape": 0.2282
+  },
+  {
+    "label": "Same model, leakage-free split",
+    "kind": "baseline",
+    "medape": 0.2345
+  },
+  {
+    "label": "+ staff seniority fix",
+    "kind": "step",
+    "medape": 0.2326
+  },
+  {
+    "label": "+ job-title embedding",
+    "kind": "step",
+    "medape": 0.2254
+  },
+  {
+    "label": "+ industry / region / city",
+    "kind": "step",
+    "medape": 0.2148
+  },
+  {
+    "label": "+ official-statistics prior",
+    "kind": "step",
+    "medape": 0.214
+  },
+  {
+    "label": "+ larger ensemble",
+    "kind": "step",
+    "medape": 0.2119
+  },
+  {
+    "label": "+ retrained title model, conformal bands",
+    "kind": "final",
+    "medape": 0.204
+  }
+]
